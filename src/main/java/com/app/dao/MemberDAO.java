@@ -23,6 +23,8 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.select", memberVO);
 	}
 	
-	
+	public Long selectIdByMemberEmail(String memberEmail) {
+		return sqlSession.selectOne("member.selectIdByMemberEmail", memberEmail);
+	}
 	
 }

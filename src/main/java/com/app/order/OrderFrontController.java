@@ -1,4 +1,4 @@
-package com.app.product;
+package com.app.order;
 
 import java.io.IOException;
 
@@ -13,11 +13,15 @@ import com.app.member.controller.MemberJoinOkController;
 import com.app.member.controller.MemberLoginController;
 import com.app.member.controller.MemberLoginOkController;
 import com.app.member.controller.MemberLogoutOkController;
+import com.app.order.controller.OrderListController;
+import com.app.order.controller.OrderReadController;
+import com.app.order.controller.OrderWriteCompleteController;
+import com.app.order.controller.OrderWriteOkController;
 import com.app.product.controller.ProductAddController;
 import com.app.product.controller.ProductAddOkController;
 import com.app.product.controller.ProductListController;
 
-public class ProductFrontController extends HttpServlet{
+public class OrderFrontController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,17 +34,17 @@ public class ProductFrontController extends HttpServlet{
 		System.out.println("요청 들어옴");
 		
 		Result result = null;
-		if(target.equals("add")) {
-			result = new ProductAddController().execute(req, resp);
-		} else if(target.equals("add-ok")) {
-			result = new ProductAddOkController().execute(req, resp);
+		if(target.equals("write-ok")) {
+//			System.out.println(target);
+			result = new OrderWriteOkController().execute(req, resp);
+			
+		} else if(target.equals("write-complete")) {
+			result = new OrderWriteCompleteController().execute(req, resp);
 		} else if(target.equals("list")) {
-			result = new ProductListController().execute(req, resp);
-		} else if(target.equals("edit")) {
-			
-		} else if(target.equals("edit-ok")) {
-			
+			result = new OrderListController().execute(req, resp);
 		} else if(target.equals("read")) {
+			result = new OrderReadController().execute(req, resp);
+		} else if(target.equals("edit-ok")) {
 			
 		} else if(target.equals("remove")) {
 			

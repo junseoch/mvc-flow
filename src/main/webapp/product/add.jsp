@@ -8,21 +8,21 @@
 </head>
 <body>
 
-	<form action="add-ok.product">
-		
+	<form action="/flow/add-ok.product" method="get">
+	
 		<div>
-			상품이름
+			<p>상품 이름<input name="productName"/></p>
 		</div>
-		
 		<div>
-			상품가격
+			<p>상품 가격<input name="productPrice"/></p>
 		</div>
-		
 		<div>
-			상품재고
+			<p>상품 재고<input name="productStock"/></p>
 		</div>
-		
+	
+		<button>상품 등록</button>
 	</form>
+	
 
 </body>
 </html>

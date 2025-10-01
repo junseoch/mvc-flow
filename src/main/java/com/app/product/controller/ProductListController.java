@@ -6,28 +6,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.app.Action;
 import com.app.Result;
 import com.app.dao.ProductDAO;
-import com.app.vo.ProductVO;
 
-public class ProductAddOkController implements Action {
+public class ProductListController implements Action {
 
 	@Override
 	public Result execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
 		Result result = new Result();
-		ProductVO productVO = new ProductVO();
 		ProductDAO productDAO = new ProductDAO();
+		JSONArray products = new JSONArray();
+
+		// JSONObject를 생성자로 넘긴다
 		
-		productVO.setProductName(req.getParameter("productName"));
-		productVO.setProductPrice(Integer.valueOf(req.getParameter("productPrice")));
-		productVO.setProductStock(Integer.valueOf(req.getParameter("productStock")));  
+		productDAO.selectAll().stream().map(JSONObject::new).forEach(products::put);
 		
-		productDAO.insert(productVO);
+		req.setAttribute("products", products);
+		productDAO.selectAll();
+		result.setPath("list.jsp");
 		
-		result.setPath("/flow/list.product");
-		result.setRedirect(true);
 		return result;
 	}
 }

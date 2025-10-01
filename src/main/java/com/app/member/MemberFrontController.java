@@ -41,7 +41,6 @@ public class MemberFrontController extends HttpServlet{
 		}
 		
 		
-		
 		if(result != null) {
 			if(result.isRedirect()) {
 				resp.sendRedirect(result.getPath());
